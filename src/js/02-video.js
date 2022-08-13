@@ -1,4 +1,5 @@
 import Player from '@vimeo/player';
+const throttle = require('lodash.throttle');
 
 const player = new Player('vimeo-player', {
   id: 19231868,
@@ -12,8 +13,7 @@ const onTimeUpdate = function (data) {
   );
 };
 
-player.on('timeupdate', _.throttle(onTimeUpdate, 1000));
-console.log(localStorage);
+player.on('timeupdate', throttle(onTimeUpdate, 1000));
 
 const stopTime = localStorage.getItem('videoplayer-current-time');
 
