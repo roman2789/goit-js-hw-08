@@ -20,10 +20,8 @@ function populateFormData() {
   const savedInputData = localStorage.getItem('feedback-form-state');
   const dataParse = JSON.parse(savedInputData);
 
-  if (dataParse.email) {
+  if (savedInputData) {
     emailInput.value = dataParse.email;
-  }
-  if (dataParse.message) {
     messageInput.value = dataParse.message;
   }
 }
