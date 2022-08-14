@@ -6,24 +6,24 @@ const messageInput = document.querySelector('textarea');
 
 form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
+populateFormData();
 
 localStorage.removeItem('videoplayer-current-time');
 
 const formData = {};
 function onFormInput(e) {
   formData[e.target.name] = e.target.value;
-
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 }
 
-populateFormData();
-
 function populateFormData() {
   const savedInputData = localStorage.getItem('feedback-form-state');
-
   const dataParse = JSON.parse(savedInputData);
-  if (savedInputData) {
+
+  if (dataParse.email) {
     emailInput.value = dataParse.email;
+  }
+  if (dataParse.message) {
     messageInput.value = dataParse.message;
   }
 }
