@@ -3,17 +3,16 @@ import throttle from 'lodash.throttle';
 
 const player = new Player('vimeo-player');
 
+const storageKey = 'videoplayer-current-time';
+
 const onTimeUpdate = function (data) {
-  localStorage.setItem(
-    'videoplayer-current-time',
-    JSON.stringify(data.seconds)
-  );
+  localStorage.setItem(storageKey, JSON.stringify(data.seconds));
 };
 
 player.on('timeupdate', throttle(onTimeUpdate, 1000));
 
-const stopTime = localStorage.getItem('videoplayer-current-time');
+const stopTime = localStorage.getItem(storageKey);
 
 stopTime && player.setCurrentTime(stopTime);
 
-localStorage.removeItem('videoplayer-current-time');
+localStorage.removeItem(storageKey);
