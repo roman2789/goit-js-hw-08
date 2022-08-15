@@ -8,9 +8,8 @@ form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
 populateFormData();
 
-localStorage.removeItem('videoplayer-current-time');
-
 const formData = {};
+
 function onFormInput(e) {
   formData[e.target.name] = e.target.value;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
@@ -20,10 +19,8 @@ function populateFormData() {
   const savedInputData = localStorage.getItem('feedback-form-state');
   const dataParse = JSON.parse(savedInputData);
 
-  if (savedInputData) {
-    emailInput.value = dataParse.email;
-    messageInput.value = dataParse.message;
-  }
+  emailInput.value = dataParse.email ? dataParse.email : '';
+  messageInput.value = dataParse.message ? dataParse.message : '';
 }
 
 function onFormSubmit(e) {

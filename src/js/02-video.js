@@ -1,10 +1,7 @@
 import Player from '@vimeo/player';
 import throttle from 'lodash.throttle';
 
-const player = new Player('vimeo-player', {
-  id: 19231868,
-  width: 640,
-});
+const player = new Player('vimeo-player');
 
 const onTimeUpdate = function (data) {
   localStorage.setItem(
@@ -17,6 +14,6 @@ player.on('timeupdate', throttle(onTimeUpdate, 1000));
 
 const stopTime = localStorage.getItem('videoplayer-current-time');
 
-player.setCurrentTime(stopTime);
+stopTime && player.setCurrentTime(stopTime);
 
 localStorage.removeItem('videoplayer-current-time');
