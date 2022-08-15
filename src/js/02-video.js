@@ -14,5 +14,3 @@ player.on('timeupdate', throttle(onTimeUpdate, 1000));
 const stopTime = localStorage.getItem(storageKey);
 
 stopTime && player.setCurrentTime(stopTime);
-
-localStorage.removeItem(storageKey);
